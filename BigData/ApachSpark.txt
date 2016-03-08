@@ -1,0 +1,70 @@
+Apache Spark : Fast and general engine for large scale data processing
+
+Download Spark from http://spark.apache.org/.
+
+About Spark
+==========
+	 It was originally developed at UC Berkeley in 2009.The creators of Spark founded Databricks in 2013.
+
+
+Quick Start
+===========
+	Downlaod Spark with Pre Build Hadoop to start working immediately.
+
+	Test Spark : Run example [./bin/run-example SparkPi 10] : Calculate value of PI.
+
+	Spark’s primary abstraction is a distributed collection of items called a Resilient Distributed Dataset (RDD). RDDs can be created from Hadoop InputFormats (such as HDFS files) or by transforming other RDDs.
+
+	Using Spark Shell
+	==================
+
+	Spark comes with shell for Scala and Python. Spark supports the programming languages Java,Scala and Python.
+
+	We will try running Scala shell and Scala application.	
+
+	To run the shell for Scala
+	
+	-----------------------------------------------------------------
+	|./bin/spark-shell						|
+	-----------------------------------------------------------------
+
+	Once shell starts we can start running the Scala commands. Let's convert text file README.md into RDD.
+
+	-------------------------------------------------------------------------------------------------
+	|scala>  val textFile = sc.textFile("README.md")						|
+	|textFile: org.apache.spark.rdd.RDD[String] = MapPartitionsRDD[1] at textFile at <console>:27	|
+	-------------------------------------------------------------------------------------------------
+
+	After getting RDD we can performan actions or transformation over RDD, which return pointer to new RDD.
+
+	Let's perform the actions on RDD.
+
+	-----------------------------------------------------------------
+	|scala> textFile.count()					|
+	|res0: Long = 95						|
+	|								|
+	|scala> textFile.first()					|
+	|res1: String = # Apache Spark					|
+	-----------------------------------------------------------------
+
+	Let's perform the transformation on RDD. Let's filter the lines containing "Spark"
+
+	---------------------------------------------------------------------------------------------------------
+	|scala> val linesWithSpark = textFile.filter(line => line.contains("Spark"))				|
+	|linesWithSpark: org.apache.spark.rdd.RDD[String] = MapPartitionsRDD[2] at filter at <console>:29	|
+	---------------------------------------------------------------------------------------------------------
+
+	
+	Spark Application
+	=================	
+
+	
+
+References.
+==========
+1. https://databricks.com/spark/about
+2. http://spark.apache.org/docs/latest/quick-start.html
+3. http://spark.apache.org/docs/latest/programming-guide.html#resilient-distributed-datasets-rdds
+4. http://hortonworks.com/hadoop/spark/
+5. http://bigdatauniversity.com/courses/spark-fundamentals/
+

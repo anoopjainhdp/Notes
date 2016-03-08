@@ -1,0 +1,7 @@
+ETL Workflow frameworks
+	Luigi : https://github.com/spotify/luigi
+	Airflow : https://github.com/airbnb/airflow
+	Pinball : https://github.com/pinterest/pinball
+
+	Comparision of workflows --> http://bytepawn.com/luigi-airflow-pinball.html
+

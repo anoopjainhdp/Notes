@@ -1,0 +1,13 @@
+Git
+====
+
+Git is distributed version controlled system. Git is different from other version control system in many ways. Git started with the following design principles.
+--> Speed
+--> Simple design
+--> Strong support for non linear development
+--> Fully distributed
+--> 	Able to handle large project.
+
+Git Design Principles
+
+1. Snapshot, not difference : Most of version controlled system store the file data as difference from the last commit. Git is different from other version control system (VCS) in this. Git takes the data snapshot whenever commit operation is issued. Git stores the series of snapshot.
