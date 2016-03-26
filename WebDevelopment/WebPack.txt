@@ -1,0 +1,199 @@
+WebPack
+========
+
+Webpack is CommonJS Module system. Today webpages are turning to web app, resulting too much of JavaScript and CSS code. To organize the code into modules help us to orginize the large code in a better way. Module system helps us to orginize the code into modules.
+
+There are different approached to solve this problem
+--> <script> tag style	[Without module system]
+--> CommonJS
+--> AMD
+--> ES6 Modules
+
+<script Tag Style
+----------------
+	Here is the way to write code without any module system
+
+	---------------------------------------------------------
+	|<script src="module1.js"></script>			|
+	---------------------------------------------------------
+
+Modules export an interface to global object (window object). The issues with this is conflicts in global object. Order of loading is improtant because of possible conflict. Module dependecies need to be resolved by the developers.
+
+CommonJS
+-------
+This style used syncronous require metod to load the dependencies and return an exported interface. A module can specify exports by adding properties to the exports object or setting the value of module.exports.
+
+	---------------------------------------------------------
+	|require("module");					|
+	|require("../file.js");					|
+	|exports.doStuff = function() {};			|
+	|module.exports = someValue;				|
+	---------------------------------------------------------
+
+Pros
+	Server-side modules can be reused
+	There are already many modules in this style (npm)
+	very simple and easy to use.
+
+Cons
+	blocking calls do not apply well on networks. Network requests are asynchronous.
+	No parallel require of multiple modules
+
+Implementations
+	node.js - server-side
+	browserify
+	modules-webmake - compile to one bundle
+	wreq - client-side
+
+
+[ToDo] More detail about AMD and ES6
+
+
+
+What is webpack
+----------------
+webpack is a module bundler.
+webpack takes modules with dependencies and generates static assets representing those modules.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Quick Start
+----------
+	Installing Webpack
+
+	---------------------------------
+	|npm install webpack -g		|
+	---------------------------------
+
+	Use Webpack
+
+	Create a static file for js and html
+	
+	----------------------------------------------------------------
+	|entry.js							|
+	|								|
+	|document.write("It works.");					|
+	-----------------------------------------------------------------
+
+	-----------------------------------------------------------------
+	|index.html							|
+	|								|
+	|<html>								|
+    	|<head>								|
+        |<meta charset="utf-8">						|
+    	|</head>							|
+    	|<body>								|
+        |<script type="text/javascript" src="bundle.js" charset="utf-8">|
+	|</script>							|
+    	|</body>							|
+	|</html>							|
+	-----------------------------------------------------------------
+
+	Then run the webpack command to create a bundle.js
+
+	-----------------------------------------------------------------
+	|webpack ./entry.js bundle.js					|
+	-----------------------------------------------------------------
+
+
+	Adding dependecies for JS File
+
+	Create a static file content.js and put dependency in entry.js
+
+	
+        -----------------------------------------------------------------
+        |content.js                                                    	|
+        |                                                              	|
+        |module.exports = "It works from content.js.";			|
+        -----------------------------------------------------------------
+
+	-----------------------------------------------------------------
+	|entry.js							|
+	|								|
+	|document.write(require('./content.js');			|
+	|								|
+	-----------------------------------------------------------------
+
+
+	If want to load the CSS along with JS we will need css-loader and style-loader. Load the loaders using npm command
+
+	-----------------------------------------------------------------
+	|npm install css-loader style-loader				|
+	-----------------------------------------------------------------
+
+	Creata a css file style.css
+	
+	-----------------------------------------------------------------
+	|style.css							|
+	|								|
+	|body{								|
+	|	background:red;						|
+	|}								|
+	-----------------------------------------------------------------
+
+	Update the content.js to put the loading requirement
+	
+	 -----------------------------------------------------------------
+        |content.js                                                     |
+        |                                                               |
+       	|require("!style!css!./style.css");				|
+	|module.exports = "It works from content.js.";                  |
+        -----------------------------------------------------------------
+	
+	If you want simpler way use webpack.config.js to simplify the command.
+	---------------------------------------------------------------------------------
+	|webpack.config.js								|
+	|										|
+	|module.exports = {								|
+    	|	entry: "./entry.js",							|
+    	|	output: {								|
+        |	path: __dirname,							|
+        |	filename: "bundle.js"							|
+    	|	},									|
+    	|	module: {								|
+        |		loaders: [							|
+        |		    { test: /\.css$/, loader: "style!css" }			|
+        |		]								|
+    	|	}									|
+	|};										|
+	---------------------------------------------------------------------------------
+
+
+	Now just run simple command
+	
+	-------------------------
+	|webpack		|
+	-------------------------
+
+	You can use developemt server to do the things automatic way. Any change in the css or js file will recompile project in watch mode and will also start a local express server at port 8080
+
+	-------------------------------------------------
+	|npm install webpack-dev-server -g		|
+	|webpack-dev-server --progress --colors		|
+	-------------------------------------------------
+
+Reference:
+	1. http://webpack.github.io/docs/tutorials/getting-started
+	2. https://webpack.github.io/
+	3. http://webpack.github.io/docs/what-is-webpack.html
