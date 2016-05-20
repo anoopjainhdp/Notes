@@ -1,0 +1,45 @@
+hadoop.rpc.protection
+dfs.encryt.data.transfer=true	--To encrypt this protocol you must set dfs.encryt.data.transfer=true on the NameNode and all DataNodes. 
+dfs.encrypt.data.transfer.algorithm -- Default 3DES
+
+
+To enable WebHDFS to listen for HTTP over SSL, configure SSL on the NameNode and all DataNodes by setting dfs.https.enable=true in the hdfs-site.xml file.
+
+
+
+
+1. mkdir -p /etc/security/serverKeys
+2. mkdir -p /etc/security/clientKeys
+3. keytool -genkey -alias anoop-filebrowserview-u14-1-3.novalocal -keyalg RSA -keysize 1024 -dname \"CN=anoop-filebrowserview-u14-1-3.novalocal,OU=hw,L=paloalto,ST=ca,C=us\" -keypass admin -keystore serverkey -storepass admin
+[/usr/jdk64/jdk1.8.0_77/jre/bin/keytool -genkey -alias anoop-filebrowserview-u14-1-3.novalocal -keyalg RSA -keysize 1024 -dname "CN=anoop-filebrowserview-u14-1-3.novalocal,OU=hw,L=paloalto,ST=ca,C=us" -keypass admin@12 -keystore serverkey -storepass admin@12]
+4. /usr/jdk64/jdk1.8.0_77/jre/bin/keytool -export  -alias ambari-us-filebrowserview-240-1.novalocal -keystore serverkey -rfc -file certKey -storepass admin@12
+5. /usr/jdk64/jdk1.8.0_77/jre/bin/keytool -import -noprompt -alias ambari-us-filebrowserview-240-5.novalocal -file certKey -keystore trustStore -storepass admin@12
+6. /usr/jdk64/jdk1.8.0_77/jre/bin/keytool -import -noprompt -alias ambari-us-filebrowserview-240-5.novalocal -file certKey -keystore alljks -storepass admin@12
+7. /usr/jdk64/jdk1.8.0_77/jre/bin/keytool -list -v -keystore alljks -storepass admin@12
+8.
+chgrp -R hadoop /etc/security/serverKeys
+chgrp -R hadoop /etc/security/clientKeys
+chown 755 /etc/security/serverKeys
+chown 755 /etc/security/clientKeys
+chown 440 /etc/security/serverKeys/certKey
+chown 440 /etc/security/serverKeys/trustStore
+chown 440 /etc/security/serverKeys/serverkey
+chown 444 /etc/security/serverKeys/alljks
+---
+mv /etc/security/serverKeys/alljks /etc/security/clientKeys/.
+chown -R yarn /etc/security/serverKeys
+chown -R yarn /etc/security/clientKeys
+chgrp -R hadoop /etc/security/serverKeys
+chgrp -R hadoop /etc/security/clientKeys
+chmod 440 /etc/security/serverKeys/certKey
+chmod 440 /etc/security/serverKeys/trustStore
+chmod 440 /etc/security/serverKeys/serverkey
+chmod 440 /etc/security/clientKeys/alljks
+
+/usr/jdk64/jdk1.8.0_77/jre/bin/keytool -genkey -alias ambari-us-filebrowserview-240-1.novalocal -keyalg RSA -keysize 1024 -dname "CN=ambari-us-filebrowserview-240-1.novalocal,OU=hw,L=paloalto,ST=ca,C=us" -keypass admin@12 -keystore serverkey -storepass admin@12
+
+/usr/jdk64/jdk1.8.0_77/jre/bin/keytool -export  -alias ambari-us-filebrowserview-240-5.novalocal -keystore serverkey -rfc -file certKey -storepass admin@12
+
+/usr/jdk64/jdk1.8.0_77/jre/bin/keytool -import -noprompt -alias ambari-us-filebrowserview-240-1.novalocal -file certKey -keystore trustStore -storepass admin@12
+
+/usr/jdk64/jdk1.8.0_77/jre/bin/keytool -import -noprompt -alias ambari-us-filebrowserview-240-5.novalocal -file certKey -keystore alljks -storepass admin@12

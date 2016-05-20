@@ -1,0 +1,57 @@
+Hadoop Notes
+===========
+
+Create table in Hive
+
+	Store data as text file
+	------------------------------------------------------------------
+	CREATE TABLE geolocation_stage (truckid string, driverid string, event string, latitude DOUBLE, longitude DOUBLE, city string, state string, velocity BIGINT, event_ind BIGINT, idling_ind BIGINT)
+	ROW FORMAT DELIMITED
+	FIELDS TERMINATED BY ','
+	STORED AS TEXTFILE
+	TBLPROPERTIES ("skip.header.line.count"="1");
+	---------------------------------------------------------------------
+	
+	Load data into table
+	----------------------------------------------------------------------
+	LOAD DATA INPATH '/tmp/maria_dev/data/trucks.csv' OVERWRITE INTO TABLE trucks_stage;
+	----------------------------------------------------------------------
+	
+	Store data as ORC format
+	----------------------------------------------------------------------
+	CREATE TABLE geolocation STORED AS ORC AS SELECT * FROM geolocation_stage;
+	----------------------------------------------------------------------
+	
+	Check table definition
+	----------------------------------------------------------------------
+	describe formatted geolocation;
+	-----------------------------------------------------------------------
+	
+	Hive performance tips
+	1. Set Tez as execution engine
+	2. Cost Based Optimization must turn ON
+	
+
+Pig
+
+	Pig can invoke code in many languages like JRuby, Jython and Java. You can also embed Pig scripts in other languages. The result is that you can use Pig as a component to build larger and more complex applications that tackle real business problems
+	
+	HCatalog allows us to share schema across tools and users within our Hadoop environment.
+	
+Spark
+
+	Spark runs on Hadoop clusters such as Hadoop YARN or Apache Mesos, or even in a Standalone Mode with its own scheduler.
+	 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	[ToDo]
+	1. Hive vectorization features - https://cwiki.apache.org/confluence/display/Hive/Vectorized+Query+Execution
+	2. Lateral View - https://cwiki.apache.org/confluence/display/Hive/LanguageManual+LateralView

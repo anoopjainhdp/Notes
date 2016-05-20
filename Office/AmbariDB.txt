@@ -1,0 +1,74 @@
+Ambari DB Table Schema Details
+-------------------------------
+viewmain	: Contains the view details shown on Admin View Page
+	view_name	: View name
+	label	: Name displayed on Admin view page
+	description
+	version
+	build
+	resource_type_id
+	icon
+	icon64
+	archive
+	mask
+	system_view	: 1 for system view , 0 for user view.
+	
+viewentity	: Contains the view instance details
+	id	
+	view_name	: View name
+	view_instance_name	: Instance name for view
+	class_name	:
+	id_property	:
+
+viewinstance : One entry per instance
+	view_instance_id 	:
+	resource_id	:
+	view_name	:
+	name	:
+	label	:
+	description	:
+	visible	:
+	icon	:
+	icon64	:
+	xml_driven	:
+	alter_names	:
+	cluster_handle	:
+	
+
+viewinstancedata : 
+	view_instance_id	:
+	view_name : View name
+	view_instance_name	: Instance name for view
+	name	:
+	user_name	:
+	value	:
+	
+viewinstanceproperty : View instace config
+	view_name	:	View name
+	view_instance_name	: Instance name for view
+	name	:	Config parameter
+	value	:	Config value
+
+viewparameter	: View config parameter mapping with xml files
+	view_name	: View name
+	name	: Parameter name
+	description	: Parameter Description
+	label	: Parameter label shown on UI 
+	placeholder	: Parameter default value
+	default_value	:
+	cluster_config	:	Xml file entry for parameter.	Two parts separated by "/". First shows the file name. Second shows the value.
+	required	:
+	masked	:
+	
+viewresource : 
+	view_name	:
+	name	:
+	plural_name	:
+	id_property	:
+	subResource_names	:
+	provider	:
+	service	:
+	resource	:
+	
+	
+Dynamic Tables : DS_<classname>_<id>

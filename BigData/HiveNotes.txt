@@ -1,0 +1,48 @@
+Hive
+====
+[Index]
+	- Limited index capability
+	- No key in database table
+	- Indexing can be used as alternative for partition in case of small data.
+	
+	Syntax to create index
+	--
+	CREATE INDEX employees_index
+	ON TABLE employees (country)
+	AS 'org.apache.hadoop.hive.ql.index.compact.CompactIndexHandler' WITH DEFERRED REBUILD
+	IDXPROPERTIES ('creator = 'me', 'created_at' = 'some_time')
+	IN TABLE employees_index_table
+	PARTITIONED BY (country, name)
+	COMMENT 'Employees indexed by country and name.';
+	--
+
+	Bitmap Index
+		- Hive have bitmap index handler.
+		- Bitmap index is good for columns having few distinct values.
+		
+	Syntax to create bitmap index
+	--
+	CREATE INDEX employees_index
+	ON TABLE employees (country)
+	AS 'BITMAP'
+	WITH DEFERRED REBUILD
+	IDXPROPERTIES ('creator = 'me', 'created_at' = 'some_time') IN TABLE employees_index_table
+	PARTITIONED BY (country, name)
+	COMMENT 'Employees indexed by country and name.';
+	--
+
+	Rebuild index
+		- WITH DEFERRED REBUILD : The new index starts empty.
+	
+	Showing index
+	--
+	SHOW FORMATTED INDEX ON employees;
+	--
+	
+	Dropping index
+	--
+	DROP INDEX IF EXISTS employees_index ON TABLE employees;
+	--
+
+Reference 
+[Book] Programming Hive - Chapter#8 - HiveQL : Indexes 

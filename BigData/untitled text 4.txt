@@ -1,0 +1,1 @@
+[Aeron] https://github.com/real-logic/Aeron : Efficient reliable UDP unicast, UDP multicast, and IPC message transport.

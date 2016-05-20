@@ -1,0 +1,9 @@
+[FILE SYSTEM][Microsoft]
+
+WASB : Windows Azure Storage Blob
+=================================
+Windows Azure Storage Blob (WASB) is an extension built on top of the HDFS APIs. The WASBS variation uses SSL certificates for improved security. It in many ways "is" HDFS. However, WASB creates a layer of abstraction that enables separation of storage. This separation is what enables your data to persist even when no clusters currently exist and enables multiple clusters plus other applications to access a single piece of data all at the same time. This increases functionality and flexibility while reducing costs and reducing the time from question to insight.
+
+Reference 
+1. https://blogs.msdn.microsoft.com/cindygross/2015/02/04/understanding-wasb-and-hadoop-storage-in-azure/
+2. https://azure.microsoft.com/en-us/services/data-lake-store/

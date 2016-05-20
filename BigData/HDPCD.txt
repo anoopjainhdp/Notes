@@ -1,0 +1,41 @@
+HDPCD Certification
+=================
+
+Apache Flume
+-------------
+Apache Flume is a distributed, reliable, and available system for efficiently collecting, aggregating and moving large amounts of log data from many different sources to a centralized data store.
+
+	What Flume does
+	---------------
+		Flume allows user to
+			-- Stream data from multiple sources into Hadoop for analysis
+			-- Collect high-volume Web logs in real time
+			-- Insulate themselves from transient spikes when the rate of incoming data exceeds the rate at which data can be written to the destination
+			-- Guarantee data delivery
+			-- Scale horizontally to handle additional data volume
+		
+		Flume has following components
+			Event : a singular unit of data that is transported by Flume (typically a single log entry)
+			Source : the entity through which data enters into Flume.
+			Sink :  the entity that delivers the data to the destination.
+			Channel : the conduit between the Source and the Sink. 
+			Agent : any physical Java virtual machine running Flume. It is a collection of sources, sinks and channels.
+			Client : produces and transmits the Event to the Source operating within the Agent
+			
+		Flow
+		----
+			A flow starts from client which transmits events to source operating within agent. Source delivers the events to one or more channels. Channel delivers the data to sink. More agent can be chained together.
+			
+		
+		Command to start flume
+		
+		flume-ng agent -n <agent_name> -c <conf dir> -f <conf file name>
+		
+		The conf file contains the info about source sink and channels.
+		
+References
+
+1. https://flume.apache.org/
+2. http://hortonworks.com/apache/flume/
+3. http://hortonworks.com/hadoop-tutorial/how-to-refine-and-visualize-server-log-data/
+
