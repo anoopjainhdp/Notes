@@ -1,0 +1,49 @@
+What is Ambari
+===============
+Ambari provides an end-to-end management and monitoring solution for your HDP cluster. 
+Using the Ambari Web UI and REST APIs, you can deploy, operate, manage configuration changes, and monitor services for all nodes in your cluster from a central point.
+
+Ambari Database Support
+========================
+- PostgreSQL 8
+
+- PostgreSQL 9.1.13+,9.3
+
+- MySQL 5.6
+
+- Oracle 11gr2, 12c
+By default, Ambari will install an instance of PostgreSQL on the Ambari Server host. 
+
+
+Manually Install Agent
+====================
+[ToDo]
+
+Setup Password Less SSH : http://docs.hortonworks.com/HDPDocuments/Ambari-2.2.2.0/bk_Installing_HDP_AMB/content/_set_up_password-less_ssh.html
+
+Service User Accounts
+====================
+Each HDP service requires a service user account. The Ambari Install wizard creates new and preserves any existing service user accounts, and uses these accounts when configuring Hadoop services. Service user account creation applies to service user accounts on the local operating system and to LDAP/AD accounts
+Reference : http://docs.hortonworks.com/HDPDocuments/Ambari-2.2.2.0/bk_ambari_reference_guide/content/_defining_service_users_and_groups_for_a_hdp_2x_stack.html
+
+Network Configuration File : vi /etc/sysconfig/network
+
+IPTable Status : chkconfig iptables off
+UMask Value : /etc/profile
+
+
+Check repo list version : yum repolist
+
+
+
+Questions
+===========
+Inode count? How to find
+Open File Descriptors?	ulimit -Sn/ulimit -Hn/ulimit -n 10000
+
+Find FQDN :hostname -f 
+Local Repository : http://docs.hortonworks.com/HDPDocuments/Ambari-2.2.2.0/bk_Installing_HDP_AMB/content/_ambari_repositories.html
+http://docs.hortonworks.com/HDPDocuments/Ambari-2.2.2.0/bk_Installing_HDP_AMB/content/_hdp_24_repositories.html
+http://docs.hortonworks.com/HDPDocuments/Ambari-2.2.2.0/bk_Installing_HDP_AMB/content/_getting_started_setting_up_a_local_repository.html
+
+
