@@ -1,0 +1,24 @@
+Problem : Celebrity Problem 
+-----------------
+A celebrity among a group of n people is a person who knows
+nobody but is known by everybody else. The task is to identify a celebrity by only
+asking questions to people of the following form: “Do you know this person?”
+
+Approach
+========
+Let's assume there are n people in the group. 
+
+For simplicity we will start with n=1. This means the person is celebrity.
+If n=2 we have two persons A and B. Let's ask the question to A. If A saya he knows B, then A is not celebrity so remove A from group. This will reduce the group to n-1 people. If A saya he does not know B then B is not celebrity so B can be removed from the group. This will reduce the group to n-1 people. This way the problem size will kept reducing by iteration.
+
+
+Problem : Number Guessing 
+=========================
+ Determine a selected integer in the range from
+1 to n, inclusive, by asking questions with yes/no answers.
+
+Approach
+========
+First queston if guessed number is greater than n/2 will reduce the problem space to half.
+
+

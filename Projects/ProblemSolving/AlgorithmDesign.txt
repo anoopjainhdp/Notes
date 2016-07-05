@@ -1,0 +1,36 @@
+Algorithm Design Strategies
+===========================
+
+Approach to solve
+	Every algorithm puzzle has input defined an instance of puzzle. The instance can be
+		- Specific  Ex: Find a false coin among eight coins with a balance
+		- General   Ex: Find a false coin among N coins with a balance
+
+In case of specific version, solve the puzzle for that version only while in case of general it is also prefereed if we solve the puzzle for smaller set. Solving for smaller set gives the insight to solve the generalized puzzle.
+
+Design Startegies
+
+	Exhaustive Search
+	-----------------
+		--> Try all possible combinations.
+
+		The issue with this approach is it becomes very difficult when problem space is more. The possible combinations increase exponentially with increase in problem space.
+
+	Backtracking
+	------------
+		--> Construct partial solution and test if partial solution leads to complete solution. In case if it does not lead to complete solution then go back and remove the last element from solution and try to constructu another partial solution. This way search space is generally less than exhaustive search space.
+
+	Decrease-and-conquer
+	-------------------
+		--> Find the relationship between a solution for a given problem and to its smaller instance. Once found. this relation will leads to recursive algorithm towards smaller instance.
+
+	
+	Divide-and-conquer
+	------------------
+		--> Divide the problem into subproblem and solve each of them and combine the solution to get the solution of original problem.
+
+
+
+
+
+			
